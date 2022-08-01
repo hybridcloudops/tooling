@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-qkt-legacy
+  labels:
+    app: rest-qkt
+    cloud-legacy: supported
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest-qkt
+  template:
+    metadata:
+      labels:
+        app: rest-qkt
+      annotations:
+        legacy/v: "2"
+        legacy/type: "zip"
+        legacy/host: "http://127.0.0.1:3556"
+        imageregistry: "http://localhost:3555"
+    spec:
+      # our container in this case is a zip fetched from the imageregistry url
+      containers:
+        - name: rest-qkt
+          image: rest-example:1.0

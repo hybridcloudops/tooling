@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-qkt-deployment
+  labels:
+    app: rest-qkt
+    cloud-private: unsupported
+    cloud-public: unsupported
+    legacy: supported
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest-qkt
+  template:
+    metadata:
+      labels:
+        app: rest-qkt
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        legacy/hosts: "localhost"
+        legacy/type: "java -jar $dir/rest-kotlin-quickstart-1.0-SNAPSHOT-runner.jar"
+        imageregistry: "file:///home/anliksim/codebase"
+    spec:
+      containers:
+        - name: rest-qkt
+          image: rest-kotlin-quickstart:1.0-SNAPSHOT-runner

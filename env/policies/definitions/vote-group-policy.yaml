@@ -1,0 +1,13 @@
+apiVersion: bsc.anliksim/v1
+kind: CloudPolicy
+metadata:
+  name: vote-group-policy
+  namespace: tenant-a
+  labels:
+    cloud-group: vote
+spec:
+  # our vote apps do not support private cloud
+  labels:
+    - none
+#    - cloud-env-minikube # <-- will not deploy anything as minikube is not supported by the app
+#    - cloud-env-bsc-aks # <-- will deploy to Azure

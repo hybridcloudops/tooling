@@ -1,0 +1,11 @@
+# JetBrains
+.idea/
+
+# Terraform
+infra/azure_cert
+infra/azure_k8_config
+*.tfstate*
+.terraform/
+
+# own
+.env/

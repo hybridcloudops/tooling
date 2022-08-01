@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  namespace: monitoring
+  labels:
+    cloud-env-minikube: supported
+    cloud-env-bsc-aks: supported
+    cloud-group: monitoring-prom
+spec:
+  ports:
+  - port: 9090
+    protocol: TCP
+    targetPort: 9090
+    nodePort: 30006
+  selector:
+    name: prometheus
+  type: LoadBalancer

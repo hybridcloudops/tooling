@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tenant-a
+  labels:
+    cloud-env-bsc-aks: supported
+    cloud-env-minikube: supported

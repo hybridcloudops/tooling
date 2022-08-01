@@ -1,0 +1,24 @@
+apiVersion: bsc.anliksim/v1
+kind: CloudPolicy
+metadata:
+  name: rest-group-policy
+  namespace: tenant-a
+  labels:
+    cloud-group: rest
+spec:
+  labels:
+    - none
+#    - cloud-env-minikube
+---
+apiVersion: bsc.anliksim/v1
+kind: CloudPolicy
+metadata:
+  name: rest-go-policy
+  namespace: tenant-a
+  labels:
+    cloud-group: rest-go
+spec:
+  labels:
+#    - none
+    - cloud-env-minikube
+#    - cloud-env-bsc-aks

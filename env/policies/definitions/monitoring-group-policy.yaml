@@ -1,0 +1,24 @@
+apiVersion: bsc.anliksim/v1
+kind: CloudPolicy
+metadata:
+  name: monitoring-group-policy
+  namespace: monitoring
+  labels:
+    cloud-group: monitoring
+spec:
+  # our monitoring stack should mainly run on minikube
+  labels:
+    - cloud-env-minikube
+---
+apiVersion: bsc.anliksim/v1
+kind: CloudPolicy
+metadata:
+  name: monitoring-prom-policy
+  namespace: monitoring
+  labels:
+    cloud-group: monitoring-prom
+spec:
+  # prometheus should run on both clusters and gather metrics
+  labels:
+    - cloud-env-minikube
+    - cloud-env-bsc-aks

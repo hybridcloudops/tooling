@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-qkt-deployment
+  namespace: tenant-a
+  labels:
+    app: rest-qkt
+    cloud-env-minikube: supported
+    cloud-env-bsc-aks: supported
+    cloud-group: rest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest-qkt
+  template:
+    metadata:
+      labels:
+        app: rest-qkt
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+    spec:
+      containers:
+        - name: rest-qkt
+          image: bscanliksim/bsc-example-app-kotlin:latest
+          ports:
+            - containerPort: 8080
